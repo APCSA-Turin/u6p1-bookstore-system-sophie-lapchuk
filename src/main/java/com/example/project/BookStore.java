@@ -25,7 +25,7 @@ public class BookStore {
     //method to add a new user to the user array
     public void addUser(User user) {
         for (int i = 0; i < users.length; i++) {
-            if (users[i] == null) { //adding user at the first null spot
+            if (users[i] == null || users[i].getName().equals("EMPTY_SLOT")) { //adding user at the first null spot
                 users[i] = user;
                 break;
             }
@@ -128,8 +128,22 @@ public class BookStore {
     public String bookStoreUserInfo() {
         String str = "";
         for (User user : users) {
-            str += user.userInfo() + "\n";
+            if (user == null) {
+                str += "EMPTY_SLOT\n";
+            } else {
+            str += "Name: " + user.getName() + "\n";
+            str += "ID: " + user.getId() + "\n";
+            }
         }
     return str;
+    }
+
+    //method for interface to make null users empty to avoid null exception
+    public void makeNullUserEmpty() {
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == null) {
+                users[i] = new User("EMPTY_SLOT", "EMPTY_SLOT");
+            }
+        }
     }
 }
