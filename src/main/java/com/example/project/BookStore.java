@@ -146,4 +146,38 @@ public class BookStore {
             }
         }
     }
+
+    public static void main(String[] args) {
+        IdGenerate.reset();
+        BookStore bookstore = new BookStore();
+        //new books and add them all
+        Book book1 = new Book("1", "1", 1, "1", 1);
+        Book book2 = new Book("2", "2", 2, "2", 2);
+        Book book3 = new Book("3", "3", 3, "3", 3);
+        bookstore.addBook(book3);
+        bookstore.addBook(book2);
+        bookstore.addBook(book1);
+
+        System.out.println("TEST ADD BOOKS: " + bookstore.bookStoreBookInfo());
+        bookstore.removeBook(book3);
+        System.out.println("TEST REMOVE BOOK: " + bookstore.bookStoreBookInfo());
+        bookstore.insertBook(book3, 1);
+        System.out.println("TEST INSERT BOOK: " + bookstore.bookStoreBookInfo());
+        bookstore.addBook(book3);
+        bookstore.addBook(book3);
+        System.out.println("TEST ADD BOOK #2");
+
+        //new users and add them all
+        IdGenerate.generateID();
+        User user1 = new User("Joe", IdGenerate.getCurrentId());
+        IdGenerate.generateID();
+        User user2 = new User("Bo", IdGenerate.getCurrentId());
+        bookstore.addUser(user1);
+        bookstore.addUser(user2);
+
+        System.out.println("TEST ADD USER: " + bookstore.bookStoreUserInfo());
+        bookstore.removeUser(user1);
+        System.out.println("TEST REMOVE USER: " + bookstore.bookStoreUserInfo());
+
+    }
 }
